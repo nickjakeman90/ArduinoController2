@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
@@ -14,9 +13,9 @@ namespace ArduinoController
 {
     public partial class ArdunioController : Form
     {
-        bool connected = false;
-        String[] ports;
-        SerialPort port;
+        private bool connected = false;
+        private String[] ports;
+        private SerialPort port;
        
         //ino file generator class, not used yet.
         INOGenerator ino = new INOGenerator();
@@ -57,12 +56,7 @@ namespace ArduinoController
             }
 
             //Parity
-            string[] parityOptions = { "None", "Even", "Odd" };
-
-            foreach (string parityOption in parityOptions)
-            {
-                cboParity.Items.Add(parityOption);
-            }
+            cboParity.DataSource = Enum.GetValues(typeof(Parity));
 
         }
 
@@ -82,10 +76,14 @@ namespace ArduinoController
         {
             connected = true;
             string selectedPort = cboSerialConnection.GetItemText(cboSerialConnection.SelectedItem);
+
             string baudRate = cboBaudRate.GetItemText(cboBaudRate.SelectedItem);
             int bRate = Int32.Parse(baudRate);
 
-            port = new SerialPort(selectedPort, bRate, Parity.None, 8, StopBits.One);
+            Parity parity;
+            Enum.TryParse<Parity>(cboParity.SelectedValue.ToString(), out parity);
+
+            port = new SerialPort(selectedPort, bRate, parity, 8, StopBits.One);
             port.Open();
             port.Write("#STAR\n");
             btnConnect.Text = "Disconnect";
@@ -203,6 +201,7 @@ namespace ArduinoController
         {
             txtLCDControl.Text = "";
         }
+
     }
 
  
