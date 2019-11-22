@@ -49,14 +49,18 @@ namespace ArduinoController
             //Baud
             int[] baudRates = { 300, 600, 1200, 2400, 4800,
                 9600, 14400, 19200, 28800, 38400, 57600 };
-
-            foreach (int baudRate in baudRates)
-            {
-                cboBaudRate.Items.Add(baudRate);
-            }
+            cboBaudRate.DataSource = baudRates;
 
             //Parity
             cboParity.DataSource = Enum.GetValues(typeof(Parity));
+
+            //Data bits
+            int[] dataBits = { 5, 6, 7, 8 };
+            cboDatabits.DataSource = dataBits;
+
+            //Stop bits
+            cboStopBits.DataSource = Enum.GetValues(typeof(StopBits));
+
 
         }
 
@@ -83,7 +87,13 @@ namespace ArduinoController
             Parity parity;
             Enum.TryParse<Parity>(cboParity.SelectedValue.ToString(), out parity);
 
-            port = new SerialPort(selectedPort, bRate, parity, 8, StopBits.One);
+            string dataBits = cboDatabits.GetItemText(cboDatabits.SelectedItem);
+            int dBits = Int32.Parse(dataBits);
+
+            StopBits stopbits;
+            Enum.TryParse<StopBits>(cboStopBits.SelectedValue.ToString(), out stopbits);
+
+            port = new SerialPort(selectedPort, bRate, parity, dBits, stopbits);
             port.Open();
             port.Write("#STAR\n");
             btnConnect.Text = "Disconnect";
@@ -155,6 +165,8 @@ namespace ArduinoController
             cboSerialConnection.Enabled = false;
             cboParity.Enabled = false;
             cboBaudRate.Enabled = false;
+            cboDatabits.Enabled = false;
+            cboStopBits.Enabled = false;
 
             //Checkboxes
             foreach (CheckBox c in groupBoxLED.Controls.OfType<CheckBox>())
@@ -174,6 +186,8 @@ namespace ArduinoController
             cboSerialConnection.Enabled = true;
             cboParity.Enabled = true;
             cboBaudRate.Enabled = true;
+            cboDatabits.Enabled = true;
+            cboStopBits.Enabled = true;
             
             //Checkboxes
             foreach(CheckBox c in groupBoxLED.Controls.OfType<CheckBox>())
@@ -204,7 +218,7 @@ namespace ArduinoController
 
     }
 
- 
+
 }
 
 

@@ -39,8 +39,8 @@
             this.btnConnect = new System.Windows.Forms.Button();
             this.cboSerialConnection = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cboStopBits = new System.Windows.Forms.ComboBox();
+            this.cboDatabits = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -160,8 +160,8 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.comboBox2);
-            this.groupBox2.Controls.Add(this.comboBox1);
+            this.groupBox2.Controls.Add(this.cboStopBits);
+            this.groupBox2.Controls.Add(this.cboDatabits);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label4);
@@ -178,23 +178,23 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Serial Settings";
             // 
-            // comboBox2
+            // cboStopBits
             // 
-            this.comboBox2.Enabled = false;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(268, 49);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 16;
+            this.cboStopBits.Enabled = false;
+            this.cboStopBits.FormattingEnabled = true;
+            this.cboStopBits.Location = new System.Drawing.Point(268, 49);
+            this.cboStopBits.Name = "cboStopBits";
+            this.cboStopBits.Size = new System.Drawing.Size(121, 21);
+            this.cboStopBits.TabIndex = 16;
             // 
-            // comboBox1
+            // cboDatabits
             // 
-            this.comboBox1.Enabled = false;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(268, 19);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 15;
+            this.cboDatabits.Enabled = false;
+            this.cboDatabits.FormattingEnabled = true;
+            this.cboDatabits.Location = new System.Drawing.Point(268, 19);
+            this.cboDatabits.Name = "cboDatabits";
+            this.cboDatabits.Size = new System.Drawing.Size(121, 21);
+            this.cboDatabits.TabIndex = 15;
             // 
             // label6
             // 
@@ -343,8 +343,8 @@
         private System.Windows.Forms.ComboBox cboBaudRate;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cboStopBits;
+        private System.Windows.Forms.ComboBox cboDatabits;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
