@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBoxLED = new System.Windows.Forms.GroupBox();
+            this.cboLED2Port = new System.Windows.Forms.ComboBox();
+            this.cboLED1Port = new System.Windows.Forms.ComboBox();
             this.chkLED5 = new System.Windows.Forms.CheckBox();
             this.chkLED4 = new System.Windows.Forms.CheckBox();
             this.chkLED3 = new System.Windows.Forms.CheckBox();
@@ -53,6 +55,10 @@
             this.btnLCDClear = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnExit = new System.Windows.Forms.Button();
+            this.cboLED3Port = new System.Windows.Forms.ComboBox();
+            this.cboLED4Port = new System.Windows.Forms.ComboBox();
+            this.cboLED5Port = new System.Windows.Forms.ComboBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBoxLED.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -60,6 +66,11 @@
             // 
             // groupBoxLED
             // 
+            this.groupBoxLED.Controls.Add(this.cboLED5Port);
+            this.groupBoxLED.Controls.Add(this.cboLED4Port);
+            this.groupBoxLED.Controls.Add(this.cboLED3Port);
+            this.groupBoxLED.Controls.Add(this.cboLED2Port);
+            this.groupBoxLED.Controls.Add(this.cboLED1Port);
             this.groupBoxLED.Controls.Add(this.chkLED5);
             this.groupBoxLED.Controls.Add(this.chkLED4);
             this.groupBoxLED.Controls.Add(this.chkLED3);
@@ -72,10 +83,26 @@
             this.groupBoxLED.TabStop = false;
             this.groupBoxLED.Text = "LED Controls";
             // 
+            // cboLED2Port
+            // 
+            this.cboLED2Port.FormattingEnabled = true;
+            this.cboLED2Port.Location = new System.Drawing.Point(71, 42);
+            this.cboLED2Port.Name = "cboLED2Port";
+            this.cboLED2Port.Size = new System.Drawing.Size(33, 21);
+            this.cboLED2Port.TabIndex = 18;
+            // 
+            // cboLED1Port
+            // 
+            this.cboLED1Port.FormattingEnabled = true;
+            this.cboLED1Port.Location = new System.Drawing.Point(71, 20);
+            this.cboLED1Port.Name = "cboLED1Port";
+            this.cboLED1Port.Size = new System.Drawing.Size(33, 21);
+            this.cboLED1Port.TabIndex = 17;
+            // 
             // chkLED5
             // 
             this.chkLED5.AutoSize = true;
-            this.chkLED5.Location = new System.Drawing.Point(15, 114);
+            this.chkLED5.Location = new System.Drawing.Point(11, 114);
             this.chkLED5.Name = "chkLED5";
             this.chkLED5.Size = new System.Drawing.Size(56, 17);
             this.chkLED5.TabIndex = 4;
@@ -85,7 +112,7 @@
             // chkLED4
             // 
             this.chkLED4.AutoSize = true;
-            this.chkLED4.Location = new System.Drawing.Point(15, 91);
+            this.chkLED4.Location = new System.Drawing.Point(11, 91);
             this.chkLED4.Name = "chkLED4";
             this.chkLED4.Size = new System.Drawing.Size(56, 17);
             this.chkLED4.TabIndex = 3;
@@ -95,7 +122,7 @@
             // chkLED3
             // 
             this.chkLED3.AutoSize = true;
-            this.chkLED3.Location = new System.Drawing.Point(15, 68);
+            this.chkLED3.Location = new System.Drawing.Point(11, 68);
             this.chkLED3.Name = "chkLED3";
             this.chkLED3.Size = new System.Drawing.Size(56, 17);
             this.chkLED3.TabIndex = 2;
@@ -105,7 +132,7 @@
             // chkLED2
             // 
             this.chkLED2.AutoSize = true;
-            this.chkLED2.Location = new System.Drawing.Point(15, 45);
+            this.chkLED2.Location = new System.Drawing.Point(11, 45);
             this.chkLED2.Name = "chkLED2";
             this.chkLED2.Size = new System.Drawing.Size(56, 17);
             this.chkLED2.TabIndex = 1;
@@ -115,7 +142,7 @@
             // chkLED1
             // 
             this.chkLED1.AutoSize = true;
-            this.chkLED1.Location = new System.Drawing.Point(15, 22);
+            this.chkLED1.Location = new System.Drawing.Point(11, 22);
             this.chkLED1.Name = "chkLED1";
             this.chkLED1.Size = new System.Drawing.Size(56, 17);
             this.chkLED1.TabIndex = 0;
@@ -308,6 +335,30 @@
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // cboLED3Port
+            // 
+            this.cboLED3Port.FormattingEnabled = true;
+            this.cboLED3Port.Location = new System.Drawing.Point(71, 64);
+            this.cboLED3Port.Name = "cboLED3Port";
+            this.cboLED3Port.Size = new System.Drawing.Size(33, 21);
+            this.cboLED3Port.TabIndex = 19;
+            // 
+            // cboLED4Port
+            // 
+            this.cboLED4Port.FormattingEnabled = true;
+            this.cboLED4Port.Location = new System.Drawing.Point(71, 87);
+            this.cboLED4Port.Name = "cboLED4Port";
+            this.cboLED4Port.Size = new System.Drawing.Size(33, 21);
+            this.cboLED4Port.TabIndex = 20;
+            // 
+            // cboLED5Port
+            // 
+            this.cboLED5Port.FormattingEnabled = true;
+            this.cboLED5Port.Location = new System.Drawing.Point(71, 110);
+            this.cboLED5Port.Name = "cboLED5Port";
+            this.cboLED5Port.Size = new System.Drawing.Size(33, 21);
+            this.cboLED5Port.TabIndex = 21;
+            // 
             // ArdunioController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -357,6 +408,12 @@
         private System.Windows.Forms.CheckBox chkLED4;
         private System.Windows.Forms.CheckBox chkLED3;
         private System.Windows.Forms.Button btnLCDClear;
+        private System.Windows.Forms.ComboBox cboLED2Port;
+        private System.Windows.Forms.ComboBox cboLED1Port;
+        private System.Windows.Forms.ComboBox cboLED5Port;
+        private System.Windows.Forms.ComboBox cboLED4Port;
+        private System.Windows.Forms.ComboBox cboLED3Port;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 

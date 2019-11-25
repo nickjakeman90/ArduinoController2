@@ -25,7 +25,8 @@ namespace ArduinoController
         {       
             InitializeComponent();
             DisableControls();
-            GenerateCOMUI(); 
+            GenerateCOMUI();
+            PopulateLEDPorts();
         }
 
         private void GenerateCOMUI()
@@ -93,7 +94,7 @@ namespace ArduinoController
             StopBits stopbits;
             Enum.TryParse<StopBits>(cboStopBits.SelectedValue.ToString(), out stopbits);
 
-            port = new SerialPort(selectedPort, bRate, parity, dBits, stopbits);
+            port = new SerialPort(selectedPort, bRate, parity, dBits, StopBits.One);
             port.Open();
             port.Write("#STAR\n");
             btnConnect.Text = "Disconnect";
@@ -101,51 +102,48 @@ namespace ArduinoController
 
         }
 
-        //LEDS will be grouped into one function in future
+        //LEDS will be grouped 
         private void chkLED1_CheckedChanged(object sender, EventArgs e)
         {
-            int LEDID = 1;
-            bool check = false;
-
-            if (chkLED1.Checked)
-                check = true;
-
-            LEDControl(LEDID, check);
+            LED LED1 = new LED(1, chkLED1.Checked);
+            LEDControl(LED1);
         }
 
         private void chkLED2_CheckedChanged(object sender, EventArgs e)
         {
-            int LEDID = 2;
-            bool check = false;
-
-            if (chkLED2.Checked)
-                check = true;
-
-            LEDControl(LEDID, check);
+            LED LED2 = new LED(2, chkLED2.Checked);
+            LEDControl(LED2);
         }
 
         private void chkLED3_CheckedChanged(object sender, EventArgs e)
         {
-            int LEDID = 3;
-            bool check = false;
-
-            if (chkLED3.Checked)
-                check = true;
-
-            LEDControl(LEDID, check);
+            LED LED3 = new LED(3, chkLED3.Checked);
+            LEDControl(LED3);
         }
 
-        private void LEDControl(int LEDID, bool Checked)
+        private void chkLED4_CheckedChanged(object sender, EventArgs e)
+        {
+            LED LED4 = new LED(4, chkLED4.Checked);
+            LEDControl(LED4);
+        }
+
+        private void chkLED5_CheckedChanged(object sender, EventArgs e)
+        {
+            LED LED5 = new LED(5, chkLED5.Checked);
+            LEDControl(LED5);
+        }
+
+        private void LEDControl(LED lED)
         {
             if (connected)
             {
-                if (Checked == true)
+                if (lED.Active == true)
                 {
-                    port.Write("#LED" + LEDID + "ON\n");
+                    port.Write("#LED" + lED.LEDID + "ON\n");
                 }
                 else
                 {
-                    port.Write("#LED" + LEDID + "OF\n");
+                    port.Write("#LED" + lED.LEDID + "OF\n");
                 }
             }
         }
@@ -214,6 +212,15 @@ namespace ArduinoController
         private void btnLCDClear_Click(object sender, EventArgs e)
         {
             txtLCDControl.Text = "";
+        }
+
+        private void PopulateLEDPorts()
+        {
+            foreach (ComboBox c in groupBoxLED.Controls.OfType<ComboBox>())
+            {
+                for(int i = 0; i < 14; i++)
+                c.Items.Add(i);
+            }
         }
 
     }
